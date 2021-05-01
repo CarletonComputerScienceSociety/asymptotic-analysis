@@ -19,7 +19,8 @@ button {
 
 #calculator {
     padding: 1em;
-    width: 10%;
+    width: 1200px; 
+    height: 800px;
 }
 
 input{
@@ -28,4 +29,13 @@ input{
 
 p{
     text-align: center;
+}
+
+#quiz {
+    padding: 1em;
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    float: left;
+
 }

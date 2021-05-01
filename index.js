@@ -122,7 +122,9 @@
         console.log(window.currentFunction);
         window.currentFunctionData = currentFunction.generator();
         console.log(window.currentFunctionData);
-        
+        document.getElementById("function").innerHTML = "";
+        console.log(currentFunction.display(currentFunctionData));
+        document.getElementById("function").innerHTML = "$$" + currentFunction.display(currentFunctionData) + "$$";
         calculator.setExpression({id: "graph1", latex: currentFunction.display(currentFunctionData), color: Desmos.Colors.PURPLE});
     };
     
@@ -131,9 +133,9 @@
         window.calculator = Desmos.GraphingCalculator(desmos);
         randomizeFunction();
         calculator.setExpression({id: "graph2", latex: "y = cx^2"});
-
         document.getElementById("newFunction").addEventListener("click", randomizeFunction);
-    };
 
+    };
+    
     document.addEventListener("DOMContentLoaded", init);
 })();

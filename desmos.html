@@ -3,9 +3,6 @@
 <html>
     <head>
         <title>Playing with asymptotic analysis</title>
-        <script src="https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
-        <script src="index.js"></script>
-        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
         <link rel="stylesheet" href="./style.css">
     </head>
 
@@ -27,7 +24,20 @@
         <label for="k">K:</label> <input type="number" name="k" id="k"></input>
         Big O, Omega O bounds on functions (The closer the better if possible)
         <button id="newFunction">Generate New Function</button>
-        <div id="calculator" style="width: 1200px; height: 800px;"></div>
+        <div id="calculator"></div>
+
+        <div id="quiz">
+            <h3>Quiz</h3>
+            <p>Is the following function</p> 
+                <div id="function">
+
+                </div> O()?
+
+
+        </div>
+        <script src="https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+        <script src="index.js"></script>
     </body>
 </html>
 
