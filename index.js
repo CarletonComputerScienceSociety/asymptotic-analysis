@@ -1,12 +1,12 @@
 (function () {
     "use strict";
 
-    var randint = function(min, max) {
+    let randint = function(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
     function choose(choices) {
-        var index = Math.floor(Math.random() * choices.length);
+        let index = Math.floor(Math.random() * choices.length);
         return choices[index];
     }
     
@@ -18,21 +18,19 @@
     
     Types ideas potentially/writing my thoughts:  x^n (normal), x^n where n < 1, logorithm, a/(x^n)
 
-
-    I'm just gonna eat some food, I'll be back soon
     */
     let randomPolynomial = function() {
-         var degree = randint(2, 5);
-         var coeffs = [];
-         for (var i = 0; i < degree; i++) {
+         let degree = randint(2, 5);
+         let coeffs = [];
+         for (let i = 0; i < degree; i++) {
              coeffs.push(randint(1, 11));
          }
          return coeffs;
     };
     
     let polynomialToDesmosExpr = function(polynomial) {
-        var exprChunks = [];
-        var currentExponent = polynomial.length - 1;
+        let exprChunks = [];
+        let currentExponent = polynomial.length - 1;
         polynomial.forEach(function(coeff) {
             if (currentExponent == 0) {
                 exprChunks.push(coeff.toString());
@@ -48,8 +46,9 @@
 
     let randomSquareRoot = function() {
         let exponent = Math.random() * (1 - 0.01) + 0.01; //[0.01, 1)
-        let coefficient = Math.floor(Math.random() * 21); //[0, 20] 
+        let coefficient = Math.floor(Math.random() * 20 + 1); //[1, 20] 
         let constant = Math.floor(Math.random() * 11);
+        exponent = exponent.toFixed(5);
         return {exponent: exponent, coefficient: coefficient, constant: constant};
     };
 
@@ -73,7 +72,7 @@
 
     let randomInverse = function() {
         let exponent = Math.floor(Math.random() * (6-1) + 1); //[-5, -1]
-        let coefficient = Math.floor(Math.random() * 21); //[0, 20]
+        let coefficient = Math.floor(Math.random() * 20 + 1); //[1, 20]
         let constant = Math.floor(Math.random() * 11);
         return {exponent: exponent, coefficient: coefficient, constant: constant};
     }
@@ -86,7 +85,7 @@
         return "y = " + logarithm.outerCoeff + "x \\log_{2}" + logarithm.innerCoeff + "x";
     }
 
-    var functionTypes = [
+    let functionTypes = [
         {
             "name": "polynomial",
             "generator": randomPolynomial,
@@ -94,7 +93,7 @@
         },
 
         {
-            "name": "squareRoot",
+            "name": "square root",
             "generator": randomSquareRoot,
             "display": squareRootToDesmosExpr,
         },
@@ -118,7 +117,7 @@
         }
     ]
 
-    var randomizeFunction = function() { 
+    let randomizeFunction = function() { 
         window.currentFunction = choose(functionTypes);
         console.log(window.currentFunction);
         window.currentFunctionData = currentFunction.generator();
@@ -127,10 +126,13 @@
         calculator.setExpression({id: "graph1", latex: currentFunction.display(currentFunctionData), color: Desmos.Colors.PURPLE});
     };
     
-    var init = function() {
+    let init = function() {
         window.desmos = document.getElementById("calculator");
         window.calculator = Desmos.GraphingCalculator(desmos);
         randomizeFunction();
+        calculator.setExpression({id: "graph2", latex: "y = cx^2"});
+
+        document.getElementById("newFunction").addEventListener("click", randomizeFunction);
     };
 
     document.addEventListener("DOMContentLoaded", init);

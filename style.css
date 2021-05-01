@@ -1,0 +1,31 @@
+body {
+    background-color: #2F303A;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#header {
+    
+    text-align: center;
+    
+}
+
+button {
+    padding: 1em;
+    background-color: rgb(35, 94, 94);
+    color: white;
+    border-radius: 10px;
+}
+
+#calculator {
+    padding: 1em;
+    width: 10%;
+}
+
+input{
+    margin: 1em;
+}
+
+p{
+    text-align: center;
+}
