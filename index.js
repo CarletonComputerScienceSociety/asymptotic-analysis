@@ -52,14 +52,14 @@
 
     let randomSquareRoot = function() {
         let exponent = Math.random() * (1 - 0.01) + 0.01; //[0.01, 1)
-        let coefficient = Math.floor(Math.random() * 51); //[0, 50]
-        let constant = Math.floor(Math.random() * 51);
+        let coefficient = Math.floor(Math.random() * 21); //[0, 20] 
+        let constant = Math.floor(Math.random() * 11);
         return {exponent: exponent, coefficient: coefficient, constant: constant};
     };
 
     let squareRootToDesmosExpr = function(squareRoot) {
-        return "y = " + squareRoot.coefficient.toString() + `x^(${squareRoot.exponent.toString()})` +
-          + " + " + squareRoot.constant.toString();
+        return "y = " + squareRoot.coefficient.toString() + "x^{" + squareRoot.exponent.toString()
+          + "} + " + squareRoot.constant.toString();
     };
 
     let randomLogarithm = function(){
@@ -76,14 +76,14 @@
     };
 
     let randomInverse = function() {
-        let exponent = -1 * Math.floor(Math.random() * (11-0.01) - 0.01); //[-10, -0.01] This is to avoid making 0 exponent possible
-        let coefficient = Math.floor(Math.random() * 51); //[0, 50]
-        let constant = Math.floor(Math.random() * 51);
+        let exponent = Math.floor(Math.random() * (11-0.01) - 0.01); //[-10, -0.01] This is to avoid making 0 exponent possible
+        let coefficient = Math.floor(Math.random() * 21); //[0, 20]
+        let constant = Math.floor(Math.random() * 11);
         return {exponent: exponent, coefficient: coefficient, constant: constant};
     }
 
     let inverseToDesmosExpr = function(inverse) {
-        return "y = (" + inverse.coefficient.toString() + `/x^(${inverse.exponent.toString()}))` + " + " + inverse.constant.toString();
+        return "y = (\\frac{" + inverse.coefficient.toString() + "}{x^{" + inverse.exponent.toString() + "}}) + " + inverse.constant.toString();
     };
 
     let logLinearToDesmosExpr = function(logarithm) {
