@@ -15,15 +15,11 @@
     puts the function into desmos. After a graph is revealed showing the correct graph
     compared to your answer  (Possibly without showing the correct equation)
     or something like that y
-    Somehow get a bunch of types of function we want to represent and pick randomly, then pick values to alter them 
-    Where index is for types of functions []
-    function choose(choices) {
-        var index = Math.floor(Math.random() * choices.length);
-        return choices[index];
-    }
     
-    Types ideas potentially/writing my thoughts:  x^n (normal), x^n where n < 1, logorithm, a/(x^n), 
-    For sure
+    Types ideas potentially/writing my thoughts:  x^n (normal), x^n where n < 1, logorithm, a/(x^n)
+
+
+    I'm just gonna eat some food, I'll be back soon
     */
     let randomPolynomial = function() {
          var degree = randint(2, 5);
@@ -76,7 +72,7 @@
     };
 
     let randomInverse = function() {
-        let exponent = Math.floor(Math.random() * (11-0.01) - 0.01); //[-10, -0.01] This is to avoid making 0 exponent possible
+        let exponent = Math.floor(Math.random() * (6-1) + 1); //[-5, -1]
         let coefficient = Math.floor(Math.random() * 21); //[0, 20]
         let constant = Math.floor(Math.random() * 11);
         return {exponent: exponent, coefficient: coefficient, constant: constant};
@@ -128,7 +124,7 @@
         window.currentFunctionData = currentFunction.generator();
         console.log(window.currentFunctionData);
         
-        calculator.setExpression({id: "graph1", latex: currentFunction.display(currentFunctionData)});
+        calculator.setExpression({id: "graph1", latex: currentFunction.display(currentFunctionData), color: Desmos.Colors.PURPLE});
     };
     
     var init = function() {
