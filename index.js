@@ -10,6 +10,7 @@
         return choices[index];
     }
     
+    let parentFunctions = ["x", "x^2", "log(x)", "nlog(x)", "\\sqrt{x}", "\\frac{1}{x}"]
     /* 
     Maybe if the program asked questions about the time complexity and then the user
     puts the function into desmos. After a graph is revealed showing the correct graph
@@ -126,13 +127,18 @@
         console.log(currentFunction.display(currentFunctionData));
         document.getElementById("function").innerHTML = "$$" + currentFunction.display(currentFunctionData) + "$$";
         calculator.setExpression({id: "graph1", latex: currentFunction.display(currentFunctionData), color: Desmos.Colors.PURPLE});
+        document.getElementById("parentFunction").innerHTML = randomizeParentFunction();
     };
     
+    let randomizeParentFunction = function(){
+        return "$$O(" + parentFunctions[randint(0, 5)] + ")?$$";
+    }
+
     let init = function() {
         window.desmos = document.getElementById("calculator");
         window.calculator = Desmos.GraphingCalculator(desmos);
         randomizeFunction();
-        calculator.setExpression({id: "graph2", latex: "y = cx^2"});
+        // calculator.setExpression({id: "graph2", latex: "y = cx^2"});
         document.getElementById("newFunction").addEventListener("click", randomizeFunction);
 
     };

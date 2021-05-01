@@ -19,8 +19,9 @@ button {
 
 #calculator {
     padding: 1em;
-    width: 1200px; 
+    width: 45%; 
     height: 800px;
+    float: left;
 }
 
 input{
@@ -37,5 +38,17 @@ p{
     border-radius: 10px;
     color: black;
     float: left;
+    width: 45%;
+    margin: 1em;
 
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+h3 {
+    text-align: center;
 }
