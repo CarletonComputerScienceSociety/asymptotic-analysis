@@ -10,7 +10,7 @@
         return choices[index];
     }
     
-    let parentFunctions = ["x", "x^2", "\\log_{2}x", "x\\log_{2}x", "\\sqrt{x}"];
+	let parentFunctions = ["\\log_{2}x", "\\sqrt{x}", "x", "x\\log_{2}x", "x^2"];
     /* 
     Maybe if the program asked questions about the time complexity and then the user
     puts the function into desmos. After a graph is revealed showing the correct graph
@@ -21,7 +21,7 @@
 
     */
     let randomPolynomial = function() {
-         let degree = randint(2, 5);
+         let degree = randint(2, 3);
          let coeffs = [];
          for (let i = 0; i < degree; i++) {
              coeffs.push(randint(1, 11));
@@ -79,24 +79,28 @@
             "name": "polynomial",
             "generator": randomPolynomial,
             "display": polynomialToDesmosExpr,
+			"rank": "special_cased_can_be_squared_or_just_linear",
         },
 
         {
             "name": "square root",
             "generator": randomSquareRoot,
             "display": squareRootToDesmosExpr,
+			"rank": 1,
         },
         
         {
             "name": "logarithmic",
             "generator": randomLogarithm,
-            "display": logarithmToDesmosExpr
+            "display": logarithmToDesmosExpr,
+			"rank": 0,
         },
 
         {
             "name": "loglinear",
             "generator": randomLogarithm,
-            "display": logLinearToDesmosExpr
+            "display": logLinearToDesmosExpr,
+			"rank": 3,
         },
     ]
 
@@ -112,6 +116,7 @@
         let randomParentFunction = randomizeParentFunction();
         let parentFunctionLatex = randomParentFunction[0];
         let parentFunction = randomParentFunction[1];
+		window.parentFunctionName = randomParentFunction[2];
         
         document.getElementById("parentFunction").innerHTML = parentFunctionLatex;
         calculator.setExpression({id: "graph2", latex: parentFunction});
@@ -122,9 +127,33 @@
 		setTimeout(function(){window.MathJax.typeset();},10);
     };
     
+	window.isLowerThan  = function() {
+		let rank = 0;
+		if (currentFunction.name == "polynomial") {
+			rank = currentFunctionData.length == 3 ? 4 : 2
+		} else {
+			rank = currentFunction.rank;
+		}
+		let parentRank = parentFunctions.indexOf(parentFunctionName);
+		console.log(rank + " " + parentRank);
+		return rank <= parentRank;
+	};
+	
+	let doCheckAnswer = function() {
+		var no = document.getElementById("no").checked;
+		var yes = document.getElementById("yes").checked;
+		if (!no && !yes) return;
+		
+		if (yes == isLowerThan()) {
+			alert("Nice one!");
+		} else {
+			alert("Not quite!");
+		}
+	};
+	
     let randomizeParentFunction = function(){
         let parentFunction = parentFunctions[randint(0, 5)];
-        return ["$$O(" + parentFunction + ")?$$", "y = c("+parentFunction+")"];
+        return ["$$O(" + parentFunction + ")?$$", "y = c("+parentFunction+")", parentFunction];
     };
 
     let init = function() {
@@ -132,6 +161,7 @@
         window.calculator = Desmos.GraphingCalculator(desmos);
         randomizeFunction();
         document.getElementById("newFunction").addEventListener("click", randomizeFunction);
+		document.getElementById("submit").addEventListener("click", doCheckAnswer);
 
     };
     
