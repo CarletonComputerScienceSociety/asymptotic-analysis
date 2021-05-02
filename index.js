@@ -10,7 +10,7 @@
         return choices[index];
     }
     
-    let parentFunctions = ["x", "x^2", "log(x)", "nlog(x)", "\\sqrt{x}", "\\frac{1}{x}"]
+    let parentFunctions = ["x", "x^2", "log_{2}x", "xlog_{2}x", "\\sqrt{x}", "\\frac{1}{x}"]
     /* 
     Maybe if the program asked questions about the time complexity and then the user
     puts the function into desmos. After a graph is revealed showing the correct graph
@@ -67,7 +67,6 @@
     }
 
     let logarithmToDesmosExpr = function(logarithm){
-        // \log_{10} 3
         return "y = " + logarithm.outerCoeff + "\\log_{2}" + logarithm.innerCoeff + "x";
     };
 
@@ -120,25 +119,33 @@
 
     let randomizeFunction = function() { 
         window.currentFunction = choose(functionTypes);
-        console.log(window.currentFunction);
+        
         window.currentFunctionData = currentFunction.generator();
-        console.log(window.currentFunctionData);
+        
         document.getElementById("function").innerHTML = "";
-        console.log(currentFunction.display(currentFunctionData));
+        
         document.getElementById("function").innerHTML = "$$" + currentFunction.display(currentFunctionData) + "$$";
         calculator.setExpression({id: "graph1", latex: currentFunction.display(currentFunctionData), color: Desmos.Colors.PURPLE});
-        document.getElementById("parentFunction").innerHTML = randomizeParentFunction();
+        let randomParentFunction = randomizeParentFunction();
+        let parentFunctionLatex = randomParentFunction[0];
+        let parentFunction = randomParentFunction[1];
+        
+        document.getElementById("parentFunction").innerHTML = parentFunctionLatex;
+        calculator.setExpression({id: "graph2", latex: parentFunction});
+        calculator.setExpression({id: "graph3", latex: "c = 1"})
+        calculator.setExpression({id: "graph4", latex: "x = k", color: Desmos.Colors.RED})
+        calculator.setExpression({id: "graph5", latex: "k = 1"})
     };
     
     let randomizeParentFunction = function(){
-        return "$$O(" + parentFunctions[randint(0, 5)] + ")?$$";
+        let parentFunction = parentFunctions[randint(0, 5)];
+        return ["$$O(" + parentFunction + ")?$$", "y = c("+parentFunction+")"];
     }
 
     let init = function() {
         window.desmos = document.getElementById("calculator");
         window.calculator = Desmos.GraphingCalculator(desmos);
         randomizeFunction();
-        // calculator.setExpression({id: "graph2", latex: "y = cx^2"});
         document.getElementById("newFunction").addEventListener("click", randomizeFunction);
 
     };

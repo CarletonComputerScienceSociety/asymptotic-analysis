@@ -12,18 +12,15 @@
             <h2>PLAYING WITH ASYMPTOTIC ANALYSIS</h2>
         </div>
         <div id="formulas">
-            <p>f(n) is in O(g(n)) iff: </p> $$
+            <p>f(n) is in O(g(n)) if and only if: </p> $$
             \exists c \exists k \forall n \geq k\quad 0 \leq f(n) \leq cg(n)
             $$
-            <p> f(n) is in Omega(g(n)) iff: </p> $$
+            <p> f(n) is in Omega(g(n)) if and only if: </p> $$
             \exists c \exists k \forall n \geq k\quad 0 \leq cg(n) \leq f(n)
             $$
         </div>
         <noscript>Your browser does not support JavaScript!</noscript>
-        <label for="c">C:</label> <input type="number" name="c" id="c"></input><br/>
-        <label for="k">K:</label> <input type="number" name="k" id="k"></input>
-        <button id="newFunction">Generate New Function</button>
-
+        
         <div class= "row">
             <div id="calculator"></div>
 
@@ -33,6 +30,13 @@
                     <div id="function"> 
 
                     </div> <p>in</p> <div id = "parentFunction"> </div>
+                    <input type="radio" id="yes" name="yes" value="yes">
+                    <label for="male">Yes</label><br>
+                    <input type="radio" id="no" name="yes" value="yes">
+                    <label for="female">No</label><br>
+                    <button id="submit">Check Your Answer</button>
+                    <br>
+                    <button id="newFunction">Generate New Function</button>
 
 
             </div>
