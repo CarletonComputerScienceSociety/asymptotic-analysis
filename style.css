@@ -19,9 +19,10 @@ button {
 }
 
 #calculator {
-    padding: 1em;
+    
     width: 45%; 
     height: 800px;
+    margin: 1em;
     float: left;
 }
 
@@ -36,7 +37,7 @@ p{
 #quiz {
     padding: 1em;
     background-color: white;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     color: black;
     float: left;
     width: 45%;
@@ -66,4 +67,15 @@ input:hover{
 
 label:hover{
     cursor: pointer;
+}
+
+a{
+    color:white;
+}
+
+#footer{
+    
+    color: white;
+    margin-top: 1em;
+    padding: 2em;
 }
