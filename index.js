@@ -152,7 +152,7 @@
 	};
 	
     let randomizeParentFunction = function(){
-        let parentFunction = parentFunctions[randint(0, 5)];
+        let parentFunction = parentFunctions[randint(0, 4)];
         return ["$$O(" + parentFunction + ")?$$", "y = c("+parentFunction+")", parentFunction];
     };
 
