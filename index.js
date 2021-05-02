@@ -121,15 +121,19 @@
     };
     
     let randomizeParentFunction = function(){
-        let parentFunction = parentFunctions[randint(0, 5)];
+        let parentFunction = parentFunctions[randint(0, 4)];
         return ["$$O(" + parentFunction + ")?$$", "y = c("+parentFunction+")"];
     };
+
+    function reload() {
+        reload = location.reload();
+    }
 
     let init = function() {
         window.desmos = document.getElementById("calculator");
         window.calculator = Desmos.GraphingCalculator(desmos);
         randomizeFunction();
-        document.getElementById("newFunction").addEventListener("click", randomizeFunction);
+        document.getElementById("newQuestion").addEventListener("click", reload);
 
     };
     
