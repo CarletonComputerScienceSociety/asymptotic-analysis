@@ -135,6 +135,8 @@
         calculator.setExpression({id: "graph3", latex: "c = 1"})
         calculator.setExpression({id: "graph4", latex: "x = k", color: Desmos.Colors.RED})
         calculator.setExpression({id: "graph5", latex: "k = 1"})
+		
+		setTimeout(function(){window.MathJax.typeset();},10);
     };
     
     let randomizeParentFunction = function(){
