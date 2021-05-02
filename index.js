@@ -10,7 +10,7 @@
         return choices[index];
     }
     
-    let parentFunctions = ["x", "x^2", "log_{2}x", "xlog_{2}x", "\\sqrt{x}", "\\frac{1}{x}"]
+    let parentFunctions = ["x", "x^2", "\\log_{2}x", "x\\log_{2}x", "\\sqrt{x}"];
     /* 
     Maybe if the program asked questions about the time complexity and then the user
     puts the function into desmos. After a graph is revealed showing the correct graph
@@ -64,26 +64,15 @@
         let innerCoeff = randint(1, 11).toString();
         return {outerCoeff: outerCoeff, innerCoeff: innerCoeff};
 
-    }
+    };
 
     let logarithmToDesmosExpr = function(logarithm){
         return "y = " + logarithm.outerCoeff + "\\log_{2}" + logarithm.innerCoeff + "x";
     };
 
-    let randomInverse = function() {
-        let exponent = Math.floor(Math.random() * (6-1) + 1); //[-5, -1]
-        let coefficient = Math.floor(Math.random() * 20 + 1); //[1, 20]
-        let constant = Math.floor(Math.random() * 11);
-        return {exponent: exponent, coefficient: coefficient, constant: constant};
-    }
-
-    let inverseToDesmosExpr = function(inverse) {
-        return "y = (\\frac{" + inverse.coefficient.toString() + "}{x^{" + inverse.exponent.toString() + "}}) + " + inverse.constant.toString();
-    };
-
     let logLinearToDesmosExpr = function(logarithm) {
         return "y = " + logarithm.outerCoeff + "x \\log_{2}" + logarithm.innerCoeff + "x";
-    }
+    };
 
     let functionTypes = [
         {
@@ -109,12 +98,6 @@
             "generator": randomLogarithm,
             "display": logLinearToDesmosExpr
         },
-
-        {
-            "name": "inverse",
-            "generator": randomInverse,
-            "display": inverseToDesmosExpr
-        }
     ]
 
     let randomizeFunction = function() { 
@@ -140,7 +123,7 @@
     let randomizeParentFunction = function(){
         let parentFunction = parentFunctions[randint(0, 5)];
         return ["$$O(" + parentFunction + ")?$$", "y = c("+parentFunction+")"];
-    }
+    };
 
     let init = function() {
         window.desmos = document.getElementById("calculator");
